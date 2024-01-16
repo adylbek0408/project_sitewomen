@@ -5,10 +5,11 @@ from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 
 
-class MyClass:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+data_db = [
+    {'id': 1, 'title': 'Анджелина Джоли', 'content': 'Биография Анджелина Джоли', 'is_published': True},
+    {'id': 2, 'title': 'Марго Робби', 'content': 'Биография Марго Робби', 'is_published': True},
+    {'id': 3, 'title': 'Джуля Робертс', 'content': 'Биография Джуля Робертс', 'is_published': True},
+]
 
 
 menu = ["О сайте", "Добавьте статью", "Обратная связь", "Войти"]
@@ -17,15 +18,10 @@ menu = ["О сайте", "Добавьте статью", "Обратная св
 def index(request):
     # t = render_to_string('women/index.html')
     # return HttpResponse(t)
-    data = {'title': 'главная страница',
+    data = {'title': 'Главная страница',
             'menu': menu,
-            'float': 28.56,
-            'lst': [1, 2, 'asd', True],
-            'set': {1, 2, 3, 2, 5},
-            'dict': {'key_1': 'value_1', 'key_2': 'value_2'},
-            'obj': MyClass(10, 20),
-            'url': slugify("The main page"),
-            }
+            'posts': data_db,
+    }
     return render(request, 'women/index.html', context=data)
 
 
